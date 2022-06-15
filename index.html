@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+Building the Iframe
+
+The iframe has the following parameters.
+
+• Form POST Action: The POST goes to the URL opened within the iframe is from
+thepayerAuthSetupReply_deviceDataCollectionURL response field discussed in Step 1: Payer
+Authentication Setup Service (on page 21).
+
+• JWT POST Parameter: Use the value from the payerAuthSetupReply_accessToken response field
+discussed in Step 1: Payer Authentication Setup Service (on page 21
+
+    
+<iframe id="cardinal_collection_iframe" name="collectionIframe" height="10" width="10" style="display: none;"></iframe>
+
+<form id="cardinal_collection_form" method="POST" target="collectionIframe" action="[payerAuthSetupReply_deviceDataCollectionURL]">
+    <input id="cardinal_collection_form_input" type="hidden" name="JWT" value="[payerAuthSetupReply_accessToken]">
+</form>
+
+</body>
+<script>
+    window.onload = function() {
+        var cardinalCollectionForm = document.querySelector('#cardinal_collection_form');
+        if (cardinalCollectionForm) cardinalCollectionForm.submit();
+    }
+    </script>
+</html>
